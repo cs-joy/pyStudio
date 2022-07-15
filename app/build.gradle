@@ -1,0 +1,70 @@
+plugins {
+    id 'com.android.application'
+    id 'com.chaquo.python'
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "edu.gcu.shadsluiter.pyapp"
+        minSdk 21
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        sourceSets{
+            main{
+                python{
+                    srcDirs = ["src/main/python"]
+                }
+            }
+        }
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+        }
+        python {
+            buildPython "C:/Users/csjoy/AppData/Local/Programs/Python/Python310/python.exe"
+            /*
+            pip {
+                // A requirement specifier, with or without a version number:
+                install "scipy"
+                install "requests==2.24.0"
+
+                // An sdist or wheel filename, relative to the project directory:
+                install "MyPackage-1.2.3-py2.py3-none-any.whl"
+
+                // A directory containing a setup.py, relative to the project
+                // directory (must contain at least one slash):
+                install "./MyPackage"
+
+                // "-r"` followed by a requirements filename, relative to the
+                // project directory:
+                install "-r", "requirements.txt"
+            } */
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}
